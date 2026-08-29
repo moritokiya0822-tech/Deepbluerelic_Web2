@@ -69,12 +69,30 @@ function playAudio(type) {
 
 // --- 2. ステータスシミュレーター ---
 const STATS_DATA = [
-    { id: 'armor', name: '装甲厚', desc: '障害物や敵生物との衝突ダメージを軽減。', formula: (l) => 'HP: ' + (100 + (l - 1) * 30) },
-    { id: 'thrust', name: '推進推力', desc: '潜水艦の巡航速度と加速力を向上。', formula: (l) => '速度: +' + ((l - 1) * 15) + '%' },
-    { id: 'control', name: '姿勢制御', desc: '旋回性能と機動性を強化。', formula: (l) => '旋回: +' + ((l - 1) * 12) + '%' },
-    { id: 'pressure', name: '耐圧効率', desc: '深海の水圧による酸素消費の加速を大幅緩和。', formula: (l) => '水圧耐性: +' + ((l - 1) * 10) + '%' },
-    { id: 'emp', name: 'EMP放電', desc: '周囲の敵生物を一時的に麻痺・無力化。', formula: (l) => '停止: ' + (2.0 + (l - 1) * 0.6).toFixed(1) + 's / CT ' + (30 - (l - 1) * 2) + 's' },
-    { id: 'radar', name: '探索レーダー', desc: '暗闇の中で光球や遺物を感知する範囲を拡大。', formula: (l) => '探知半径: +' + ((l - 1) * 20) + 'm' },
+    { id: 'armor', name: '装甲厚', desc: '障害物や敵生物との衝突ダメージを軽減。', 
+        formula: (l) => `HP: ${l}` },
+    { id: 'thrust', name: '推進推力', desc: '潜水艦の巡航速度と加速力を向上。', 
+        formula: (l) => `速度: ${(1 + (l - 1) * 0.22).toFixed(2)}倍` },
+    { id: 'control', name: '姿勢制御', desc: '旋回性能と機動性を強化。', 
+        formula: (l) => `制動補正: +${(l * 0.55).toFixed(2)}` },
+    { id: 'pressure', name: '耐圧効率', desc: '深海の水圧による酸素消費の加速を大幅緩和。', 
+        formula: (l) => `耐圧耐性: ${Math.min(100, Math.round((l - 1) * 11.1))}%` },
+    { id: 'emp', name: 'EMP放電', desc: '周囲の敵生物を一時的に麻痺・無力化。', 
+        formula: (l) => {
+            const range = (4.5 + (l - 1) * 1).toFixed(1);
+            const duration = (1.0 + (l - 1) * 0.5).toFixed(1);
+            const ct = 14 - (l - 1) * 1;
+            return `範囲:${range} / 停止:${duration}s / CT:${ct}s`;
+        }
+    },
+    
+    { id: 'radar', name: '探索レーダー', desc: '暗闇の中で光球や遺物を感知する範囲を拡大。', 
+        formula: (l) => {
+            const range = 6 + (l - 1) * 2;
+            const arrows = Math.floor(l / 3);
+            return `範囲:${range} / 矢印:+${arrows}`;
+        }
+    },
 ];
 
 let currentStatLevels = { armor: 1, thrust: 1, control: 1, pressure: 1, emp: 1, radar: 1 };
