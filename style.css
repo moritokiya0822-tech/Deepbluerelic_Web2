@@ -44,8 +44,16 @@ body {
 
 .grid-2col {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr; /* デフォルト（スマホ）は1列 */
     gap: 24px;
+}
+
+/* 画面幅が768px以上のとき（PC・タブレット）の設定 */
+@media (min-width: 768px) {
+    .grid-2col {
+        grid-template-columns: repeat(2, 1fr); /* 強制的に2列にする */
+    }
+}
 }
 
 .grid-3col {
