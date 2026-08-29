@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Blue Relic - 公式解説 ＆ 初心者攻略ガイド</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Rajdhani:wght@600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+    
+    <!-- Lucide Icons (アイコン表示用) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti (クリア演出用) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    
+    <!-- 外部CSSの読み込み -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-body">
+
+    <!-- 背景の泡アニメーション -->
+    <div class="ambient-background">
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+        <div class="bubble b3"></div>
+        <div class="bubble b4"></div>
+        <div class="bubble b5"></div>
+    </div>
+
+    <!-- ナビゲーションバー -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#" onclick="playAudio('sonar')" class="nav-logo">
+                <div class="logo-icon-box">
+                    <div class="logo-inner">
+                        <i data-lucide="compass"></i>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <div class="logo-title">Deep Blue Relic</div>
+                    <div class="logo-subtitle">Official Game Guide</div>
+                </div>
+            </a>
+
+            <div class="nav-links">
+                <a href="#story">世界観</a>
+                <a href="#lights">4つの光</a>
+                <a href="#upgrade">潜水艦強化</a>
+                <a href="#depth">深度と酸素</a>
+                <a href="#strategy">初心者攻略</a>
+                <a href="#faq">FAQ</a>
+            </div>
+
+            <div class="nav-actions">
+                <button id="sound-btn" onclick="toggleMute()" title="サウンドON/OFF" class="icon-btn">
+                    <i data-lucide="volume-2" id="sound-icon"></i>
+                </button>
+                <button onclick="openModal()" class="btn-primary">
+                    <i data-lucide="play" class="fill-icon"></i>
+                    <span>潜水体験 PLAY</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="badge">
+                <i data-lucide="sparkles" class="animate-pulse"></i>
+                <span>海洋探索ローグライク × 遺物収集アクション</span>
+                <span class="dot"></span>
+                <span>初心者完全攻略</span>
+            </div>
+
+            <h1 class="hero-title">Deep Blue Relic</h1>
+
+            <p class="hero-subtitle">
+                海に沈んだ旧文明の記憶と、最愛の「形見」を求めて深海へ。
+            </p>
+
+            <p class="hero-description">
+                水圧により加速度的に失われる酸素と戦いながら、4つの光球を集めて潜水艦を強化。
+                沈没前の日常遺物を集めてセット効果を発動させ、深度1200mを超える深淵の秘密を解き明かせ。
+            </p>
+
+            <!-- 潜水艦ビジュアル -->
+            <div class="sub-visual-card">
+                <div class="sub-visual-inner">
+                    <div class="sub-art-container">
+                        <div class="submarine-body">
+                            <div class="sub-cockpit">
+                                <div class="sub-reflection"></div>
+                            </div>
+                            <div class="sub-porthole">
+                                <div class="sub-light-glint"></div>
+                            </div>
+                            <div class="sub-propeller"></div>
+                            <div class="sub-periscope"></div>
+                            <div class="sub-headlight"></div>
+                        </div>
+                    </div>
+
+                    <div class="sub-stats-grid">
+                        <div class="mini-stat">
+                            <span class="ms-label">MAX DEPTH</span>
+                            <span class="ms-value">1200m+</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="ms-label">STATS</span>
+                            <span class="ms-value highlighted">6項目 (Lv.10)</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="ms-label">SPECIAL</span>
+                            <span class="ms-value info">EMP / レーダー</span>
+                        </div>
+                    </div>
+
+                    <button onclick="playAudio('sonar')" class="sonar-trigger">
+                        <i data-lucide="compass"></i>
+                        <span>ソナーを照射（クリックして音を鳴らす）</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <button onclick="openModal()" class="btn-hero-play">
+                    <i data-lucide="play" class="fill-icon"></i>
+                    <span>潜水シミュレーターで体験する</span>
+                </button>
+                <a href="#lights" onclick="playAudio('bubble')" class="btn-hero-info">
+                    <i data-lucide="sparkles"></i>
+                    <span>4つの光・基本ルールを見る</span>
+                </a>
+            </div>
+
+            <div class="quick-indicators">
+                <div class="indicator"><span class="dot-red"></span><span>赤：強化パーツ</span></div>
+                <div class="indicator"><span class="dot-yellow"></span><span>黄：遺物</span></div>
+                <div class="indicator"><span class="dot-white"></span><span>白：EXP/酸素UP</span></div>
+                <div class="indicator"><span class="dot-purple"></span><span>紫：セーブ拠点</span></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 世界観セクション -->
+    <section id="story" class="section">
+        <div class="section-header">
+            <div class="section-badge">
+                <i data-lucide="compass"></i>
+                <span>WORLD & GAME OVERVIEW</span>
+            </div>
+            <h2 class="section-title">海に沈んだ世界と、遺物たちの記憶</h2>
+            <p class="section-text">
+                かつて繁栄した人類の文明は、遥かな大洪水によってすべて深い海の下へと沈んでしまった。
+                プレイヤーは潜水艦の操縦士となり、忘れ去られゆく当時の面影と、主人公にとってかけがえのない「形見」を求めて深海へと挑み続けます。
+            </p>
+        </div>
+
+        <div class="grid-2col">
+            <div class="card-glass border-cyan">
+                <div class="card-header">
+                    <div class="card-icon-box icon-cyan"><i data-lucide="sparkles"></i></div>
+                    <div>
+                        <h3>なぜ遺物を集めるのか？</h3>
+                        <p class="card-sub-label cyan">沈んだ文明を風化させないための証</p>
+                    </div>
+                </div>
+                <p class="card-body-text">
+                    海底に眠る遺物は、ハンカチ、陶器のコップ、ボールペン、古びた目覚まし時計など、沈没前の世界ではごく当たり前に使われていた日常品ばかりです。
+                </p>
+                <div class="card-tip tip-cyan">
+                    <span class="tip-label label-yellow">💡 遺物セット効果（バフ）</span>
+                    関係の深い遺物を揃えると「台所の面影」「教室の残像」などのセットが完成し、潜水艦の性能や探索を強力にサポートする永続パッシブバフが発動します。
+                </div>
+            </div>
+
+            <div class="card-glass border-indigo">
+                <div class="card-header">
+                    <div class="card-icon-box icon-indigo"><i data-lucide="anchor"></i></div>
+                    <div>
+                        <h3>最深部に眠る『形見』</h3>
+                        <p class="card-sub-label indigo">主人公が繰り返し潜り続ける本当の目的</p>
+                    </div>
+                </div>
+                <p class="card-body-text">
+                    深度が深くなるほど水圧が増し、酸素ゲージは急速に減少します。しかし、潜水艦を強化しチェックポイントを解放していくことで、1200mを超える未知の深淵へ到達可能になります。
+                </p>
+                <div class="card-tip tip-indigo">
+                    <span class="tip-label label-purple">🌊 目的の到達点</span>
+                    最深部に眠る主人公の大切な「形見（青い石のペンダント）」にたどり着くこと。それがこの探索の旅の最終目的地です。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4つの光セクション -->
+    <section id="lights" class="section">
+        <div class="section-header">
+            <div class="section-badge">
+                <i data-lucide="sparkles"></i>
+                <span>FOUR OCEANIC LIGHTS</span>
+            </div>
+            <h2 class="section-title">深海に浮かぶ『4つの光』の意味と役割</h2>
+            <p class="section-text">海中を漂う神秘的な4色の光球。色ごとに全く異なる重要な効果を持ちます。</p>
+        </div>
+
+        <div class="grid-4col">
+            <!-- Red -->
+            <div class="light-card border-red">
+                <div class="light-card-top">
+                    <div class="light-icon-circle icon-red-glow">
+                        <i data-lucide="wrench"></i>
+                    </div>
+                    <span class="priority-badge red">初心者優先度 S</span>
+                </div>
+                <h3 class="light-title">赤い光球（強化パーツ）</h3>
+                <p class="light-desc">
+                    潜水艦の6大ステータス（装甲・推力・耐圧・EMP・レーダー等）を最大Lv.10まで強化するための最重要素材。
+                </p>
+                <div class="light-footer red">
+                    💡 序盤は「耐圧効率」と「推進推力」に集中投資して生存時間を伸ばしましょう。
+                </div>
+            </div>
+            <!-- Yellow -->
+            <div class="light-card border-amber">
+                <div class="light-card-top">
+                    <div class="light-icon-circle icon-amber-glow">
+                        <i data-lucide="package"></i>
+                    </div>
+                    <span class="priority-badge amber">初心者優先度 A</span>
+                </div>
+                <h3 class="light-title">黄色い光球（生活遺物）</h3>
+                <p class="light-desc">
+                    旧文明の日常品を入手。シリーズの遺物を揃えると「強化パーツ出現率5%アップ」などの永続セット効果が恒久発動！
+                </p>
+                <div class="light-footer amber">
+                    💡 一度入手した遺物は永続的に図鑑へ登録されます。
+                </div>
+            </div>
+            <!-- White -->
+            <div class="light-card border-white">
+                <div class="light-card-top">
+                    <div class="light-icon-circle icon-white-glow">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <span class="priority-badge white">初心者優先度 S</span>
+                </div>
+                <h3 class="light-title">白い光球（酸素拡張）</h3>
+                <p class="light-desc">
+                    経験値を獲得し、プレイヤーLvを上昇。最大呼吸バー（基本酸素容量）が恒久的に拡張されます。
+                </p>
+                <div class="light-footer white">
+                    💡 大中小3つのサイズが存在。浅海でたくさん集めて酸素の土台を作りましょう。
+                </div>
+            </div>
+            <!-- Purple -->
+            <div class="light-card border-purple">
+                <div class="light-card-top">
+                    <div class="light-icon-circle icon-purple-glow">
+                        <i data-lucide="anchor"></i>
+                    </div>
+                    <span class="priority-badge purple">初心者優先度 S+</span>
+                </div>
+                <h3 class="light-title">紫の光球（深海セーブ拠点）</h3>
+                <p class="light-desc">
+                    深度200m/700m/1200mの拠点を解放。次回からその深度を選択してダイブ開始可能。
+                </p>
+                <div class="light-footer purple">
+                    💡 浅瀬から潜り直す手間を大幅カットできる最重要チェックポイントです。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- シミュレーターセクション -->
+    <section id="upgrade" class="section">
+        <div class="section-header">
+            <div class="section-badge">
+                <i data-lucide="wrench"></i>
+                <span>STATUS SIMULATOR</span>
+            </div>
+            <h2 class="section-title">潜水艦ステータス強化シミュレーター</h2>
+            <p class="section-text">赤い光で強化できる6大ステータスをシミュレーション。レベルを増減させてみましょう。</p>
+        </div>
+
+        <div class="simulator-controls">
+            <div class="preset-buttons">
+                <span class="preset-label">おすすめプリセット：</span>
+                <button onclick="setPreset('beginner')" class="btn-preset cyan">初心者バランス型</button>
+                <button onclick="setPreset('deep')" class="btn-preset indigo">深海深淵特化型</button>
+                <button onclick="setPreset('max')" class="btn-preset emerald">全MAX (Lv.10)</button>
+                <button onclick="setPreset('reset')" class="btn-preset slate">初期リセット</button>
+            </div>
+            <div class="parts-counter" id="total-parts-text">
+                🔴 必要パーツ: 0 / 54個
+            </div>
+        </div>
+
+        <div class="stats-grid" id="stats-container">
+            <!-- JavaScriptで動的に生成 -->
+        </div>
+    </section>
+
+    <!-- 深度と酸素セクション -->
+    <section id="depth" class="section">
+        <div class="section-header">
+            <div class="section-badge">
+                <i data-lucide="gauge"></i>
+                <span>DEPTH & OXYGEN ACCELERATION</span>
+            </div>
+            <h2 class="section-title">深度と酸素消費の加速度的法則</h2>
+            <p class="section-text">深海では水圧により酸素消費が指数関数的に激増します。耐圧効率を上げないと深層での生存は不可能です。</p>
+        </div>
+
+        <div class="calc-card">
+            <div class="calc-grid">
+                <div class="calc-inputs">
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>潜水深度メーター:</span>
+                            <strong id="depth-val">350 m</strong>
+                        </div>
+                        <input type="range" min="0" max="1500" step="25" value="350" id="depth-slider" oninput="calcOxygen()" class="custom-slider">
+                        <div class="slider-labels">
+                            <span>0m</span><span>200m</span><span>700m</span><span>1200m</span><span>1500m</span>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header">
+                            <span>潜水艦の【耐圧効率】:</span>
+                            <strong id="pressure-val">Lv.3</strong>
+                        </div>
+                        <input type="range" min="1" max="10" step="1" value="3" id="pressure-slider" oninput="calcOxygen()" class="custom-slider pressure">
+                        <div class="slider-labels">
+                            <span>Lv.1</span><span>Lv.5</span><span>Lv.10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-results">
+                    <div class="result-box cyan">
+                        <span class="rb-label">O2 DRAIN RATE</span>
+                        <span class="rb-value" id="drain-result">2.12 <small>/秒</small></span>
+                    </div>
+                    <div class="result-box indigo">
+                        <span class="rb-label">EST. SURVIVAL</span>
+                        <span class="rb-value" id="time-result">141 <small>秒</small></span>
+                    </div>
+                    <div class="result-advice" id="depth-advice"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-2col">
+            <div class="depth-zone zone-sky">
+                <div class="zone-header">
+                    <h3>0m 〜 200m：陽光層（浅海）</h3>
+                    <span class="zone-tag">酸素消費 1.0x</span>
+                </div>
+                <p>太陽光が届く青い穏やかな海。白い光（EXP）や赤い光（パーツ）を回収して基礎体力をビルドするエリア。</p>
+                <div class="zone-footer">推奨: 初期状態 (Lv.1〜2) / チェックポイント: 0m</div>
+            </div>
+            <div class="depth-zone zone-blue">
+                <div class="zone-header">
+                    <h3>200m 〜 700m：薄光層（中深海）</h3>
+                    <span class="zone-tag">酸素消費 1.8x</span>
+                </div>
+                <p>水圧で酸素の減りが加速。突進する中型生物が出現するため耐圧効率Lv.3以上が必須となります。</p>
+                <div class="zone-footer">推奨: 耐圧効率 Lv.3+ / チェックポイント: 200m</div>
+            </div>
+            <div class="depth-zone zone-indigo">
+                <div class="zone-header">
+                    <h3>700m 〜 1200m：無光層（海底都市遺跡）</h3>
+                    <span class="zone-tag">酸素消費 3.2x</span>
+                </div>
+                <p>かつてのビル群や信号機が沈む幻想的廃墟。多数の日常遺物が眠るが電撃クラゲ等の危険生物が密集。</p>
+                <div class="zone-footer">推奨: 耐圧効率 Lv.6+ ＆ EMP Lv.4+ / チェックポイント: 700m</div>
+            </div>
+            <div class="depth-zone zone-purple">
+                <div class="zone-header">
+                    <h3>1200m 〜 深淵：超深海（最愛の形見）</h3>
+                    <span class="zone-tag">酸素消費 5.5x+</span>
+                </div>
+                <p>光が届かない極限深淵。主人公のかけがえのない「形見」が眠る最後の未踏領域。全強化と遺物バフ必須。</p>
+                <div class="zone-footer">推奨: 全ステータス Lv.8〜10 / チェックポイント: 1200m</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 初心者ロードマップ & FAQ -->
+    <section id="strategy" class="section">
+        <div class="section-header">
+            <div class="section-badge">
+                <i data-lucide="compass"></i>
+                <span>BEGINNER STRATEGY ROADMAP</span>
+            </div>
+            <h2 class="section-title">初心者向け深海攻略ロードマップ</h2>
+        </div>
+
+        <div class="grid-3col">
+            <div class="step-card sky">
+                <span class="step-badge">STEP 1 (0〜200m)</span>
+                <h3>白・赤の光で基礎ビルド</h3>
+                <ul>
+                    <li>• 白い光を集めて呼吸バーを拡張</li>
+                    <li>• 赤い光で「耐圧・推力」をLv.3へ</li>
+                    <li>• 200mの紫の光で第1セーブ確保</li>
+                </ul>
+            </div>
+            <div class="step-card indigo">
+                <span class="step-badge">STEP 2 (200〜700m)</span>
+                <h3>耐圧効率と遺物セット発動</h3>
+                <ul>
+                    <li>• 酸素消費を「耐圧 Lv.5+」で抑制</li>
+                    <li>• 「台所の面影」セットを発動</li>
+                    <li>• 突進魚はEMPを当てて安全通過</li>
+                    <li>• 700mの第2セーブを開放</li>
+                </ul>
+            </div>
+            <div class="step-card purple">
+                <span class="step-badge">STEP 3 (700〜1200m+)</span>
+                <h3>都市遺跡と形見の奪還</h3>
+                <ul>
+                    <li>• EMP＆レーダーをLv.8以上に</li>
+                    <li>• 1200mセーブから深淵へ突入</li>
+                    <li>• 最深部の「石のペンダント」へ！</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="faq" class="faq-section">
+            <div class="faq-header">
+                <h3>よくある質問 (FAQ)</h3>
+                <p>初心者がつまずきやすいポイントを解説</p>
+            </div>
+            <div class="faq-container" id="faq-container">
+                <!-- JavaScriptで生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i data-lucide="compass"></i>
+                <span>Deep Blue Relic Guide</span>
+            </div>
+            <p>HTML/CSS/JS 分離学習用エディション。100%再現・省略なし版。</p>
+            <div class="copyright">© 2026 Deep Blue Relic. Project Separation Study.</div>
+        </div>
+    </footer>
+
+    <!-- モーダル（ミニゲーム） -->
+    <div id="sim-modal" class="modal-overlay hidden">
+        <div class="modal-window">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <i data-lucide="compass"></i>
+                    <div>
+                        <h3>深海潜水インタラクティブ体験</h3>
+                        <p>DEEP SEA DIVE SIMULATION</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="modal-close"><i data-lucide="x"></i></button>
+            </div>
+
+            <div class="game-hud">
+                <div>深度: <strong id="hud-depth">0m</strong></div>
+                <div>酸素: <strong id="hud-o2">100%</strong></div>
+                <div>装甲: <strong id="hud-hp">100</strong></div>
+                <div>赤パーツ: <strong id="hud-red">0</strong></div>
+                <div>遺物: <strong id="hud-relic">0個</strong></div>
+            </div>
+
+            <div class="game-viewport">
+                <canvas id="game-canvas" width="640" height="380"></canvas>
+                <div id="game-overlay" class="game-overlay">
+                    <h4 id="overlay-title">深海潜水を開始</h4>
+                    <p id="overlay-desc">WASDまたは矢印キーで操縦。光球を回収しながら深海を目指しましょう！</p>
+                    <button onclick="startGame()" class="btn-start">潜水スタート</button>
+                </div>
+            </div>
+
+            <div class="game-controls-help">
+                <div>操作: 矢印キー または W / A / S / D</div>
+                <button onclick="triggerGameEMP()" class="btn-emp-trigger">⚡ EMP放電 (Space)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外部JavaScriptの読み込み -->
+    <script src="script.js"></script>
+</body>
+</html>
