@@ -177,7 +177,16 @@ button:active {
     justify-content: center;
 }
 
-.logo-inner i { color: #00fbff; width: 20px; height: 20px; }
+/* 中のアイコン（置き換え後のsvgにも対応） */
+.logo-inner i,
+.logo-inner svg,
+.logo-inner [data-lucide] {
+    color: #00fbff !important;
+    stroke: #00fbff !important;
+    width: 24px !important;
+    height: 24px !important;
+    filter: drop-shadow(0 0 6px rgba(0, 251, 255, 0.9));
+}
 
 .logo-title {
     font-family: 'Cinzel', serif;
