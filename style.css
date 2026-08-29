@@ -42,24 +42,22 @@ body {
     z-index: 10;
 }
 
-.grid-2col {
-    display: grid;
-    grid-template-columns: 1fr; /* デフォルト（スマホ）は1列 */
-    gap: 24px;
-}
-
-/* 画面幅が768px以上のとき（PC・タブレット）の設定 */
-@media (min-width: 768px) {
-    .grid-2col {
-        grid-template-columns: repeat(2, 1fr); /* 強制的に2列にする */
-    }
-}
-}
-
+/* --- モバイル用（1列） --- */
+.grid-2col,
 .grid-3col {
     display: grid;
-    grid-template-columns: 1fr; /* スマホでは1列 */
+    grid-template-columns: 1fr;
     gap: 24px;
+}
+
+/* --- PC用（画面幅768px以上） --- */
+@media (min-width: 768px) {
+    .grid-2col {
+        grid-template-columns: repeat(2, 1fr); /* 2列 */
+    }
+    .grid-3col {
+        grid-template-columns: repeat(3, 1fr); /* 3列 */
+    }
 }
 
 /* 画面幅が768px以上のとき（PC・タブレット） */
