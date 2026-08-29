@@ -16,7 +16,7 @@ function toggleMute() {
     isMuted = !isMuted;
     const icon = document.getElementById('sound-icon');
     icon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
-    lucide.createIcons(); // アイコン再描画
+    lucide.createIcons();
 }
 
 function playAudio(type) {
@@ -62,9 +62,7 @@ function playAudio(type) {
             osc.start();
             osc.stop(now + 0.5);
         }
-    } catch (e) {
-        console.error("Audio Playback Error:", e);
-    }
+    } catch (e) {}
 }
 
 // --- 2. ステータスシミュレーター ---
@@ -189,7 +187,7 @@ function toggleFaq(idx) {
     items[idx].classList.toggle('active');
 }
 
-// --- 5. ミニゲーム・シミュレーター ---
+// --- 5. ミニゲーム ---
 let isPlaying = false;
 let gameState = {
     x: 320, y: 50, vx: 0, vy: 0,
@@ -220,7 +218,6 @@ function startGame() {
         entities: [], particles: []
     };
 
-    // エンティティ生成
     for (let i = 0; i < 25; i++) {
         const rand = Math.random();
         gameState.entities.push({
@@ -248,7 +245,6 @@ function gameLoop() {
     const canvas = document.getElementById('game-canvas');
     const ctx = canvas.getContext('2d');
 
-    // 入力更新
     let ax = (keys['ArrowRight'] || keys['KeyD'] ? 1 : 0) - (keys['ArrowLeft'] || keys['KeyA'] ? 1 : 0);
     let ay = (keys['ArrowDown'] || keys['KeyS'] ? 1.2 : 0) - (keys['ArrowUp'] || keys['KeyW'] ? 1 : 0);
 
@@ -258,12 +254,10 @@ function gameLoop() {
     gameState.y = Math.max(30, gameState.y + gameState.vy);
     gameState.depth = Math.floor(gameState.y * 3.2);
 
-    // 酸素計算
     const dFactor = 1 + Math.pow(gameState.depth / 300, 1.4);
     gameState.o2 = Math.max(0, gameState.o2 - 0.04 * dFactor);
     if (gameState.empCooldown > 0) gameState.empCooldown--;
 
-    // 終了判定
     if (gameState.o2 <= 0 || gameState.hp <= 0) {
         isPlaying = false;
         document.getElementById('overlay-title').innerText = '潜水限界・浮上';
@@ -278,24 +272,20 @@ function gameLoop() {
         document.getElementById('game-overlay').classList.remove('hidden');
     }
 
-    // HUD更新
     document.getElementById('hud-depth').innerText = gameState.depth + 'm';
     document.getElementById('hud-o2').innerText = Math.round(gameState.o2) + '%';
     document.getElementById('hud-hp').innerText = gameState.hp;
     document.getElementById('hud-red').innerText = gameState.redParts;
     document.getElementById('hud-relic').innerText = gameState.relics + '個';
 
-    // 描画
     ctx.fillStyle = '#020b18';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // 深度線
     ctx.strokeStyle = 'rgba(14, 116, 144, 0.2)';
     for (let y = 0; y < canvas.height; y += 80) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
     }
 
-    // エンティティ更新
     gameState.entities.forEach(e => {
         if (e.frozen > 0) e.frozen--;
         else { e.x += e.vx; if (e.x < 30 || e.x > canvas.width - 30) e.vx *= -1; }
@@ -317,7 +307,6 @@ function gameLoop() {
         ctx.fill();
     });
 
-    // 潜水艦
     ctx.fillStyle = '#eab308';
     ctx.beginPath();
     ctx.ellipse(gameState.x, gameState.y % 350, 20, 12, 0, 0, Math.PI * 2);
@@ -326,7 +315,6 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// キー入力イベント
 window.addEventListener('keydown', e => {
     keys[e.code] = true;
     if (e.code === 'Space') { e.preventDefault(); triggerGameEMP(); }
