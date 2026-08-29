@@ -168,7 +168,7 @@ button:active {
 }
 
 .logo-inner {
-    background: #00fbff;
+    background: #031329;
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -177,7 +177,7 @@ button:active {
     justify-content: center;
 }
 
-.logo-inner i { color: var(--cyan-primary); width: 20px; height: 20px; }
+.logo-inner i { color: #00fbff; width: 20px; height: 20px; }
 
 .logo-title {
     font-family: 'Cinzel', serif;
