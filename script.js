@@ -159,9 +159,10 @@ function calcOxygen() {
     document.getElementById('depth-val').innerText = depth + ' m';
     document.getElementById('pressure-val').innerText = 'Lv.' + pressure;
 
-    const rawMultiplier = 1.0 + Math.pow(depth / 250, 1.6);
-    const mitigation = (pressure - 1) * 0.08;
-    const drain = Math.max(0.5, rawMultiplier * (1 - mitigation)).toFixed(2);
+    // 計算式： (1 + 深度 / 100) / 耐圧レベル
+    const drainValue = (1 + depth / 100) / pressure;
+    // 結果が極端に小さくなりすぎないよう、最低値を 0.1 などに設定して fixed(2) で小数点第2位まで表示
+    const drain = Math.max(0.1, drainValue).toFixed(2);
     const survival = Math.round(300 / parseFloat(drain));
 
     document.getElementById('drain-result').innerHTML = drain + ' <small>/秒</small>';
