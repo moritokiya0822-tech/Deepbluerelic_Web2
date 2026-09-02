@@ -159,10 +159,14 @@ function calcOxygen() {
     document.getElementById('depth-val').innerText = depth + ' m';
     document.getElementById('pressure-val').innerText = 'Lv.' + pressure;
 
-    // 計算式： (1 + 深度 / 100) / 耐圧レベル
-    const drainValue = (1 + depth / 100) / pressure;
-    // 結果が極端に小さくなりすぎないよう、最低値を 0.1 などに設定して fixed(2) で小数点第2位まで表示
-    const drain = Math.max(0.1, drainValue).toFixed(2);
+    // 1. 基本的な消費量（0m地点。レベルを上げても変化しない）
+    const baseDrain = 1.0;
+    // 2. 深度による増加分（ペナルティ）を計算
+    const depthPenalty = depth / 100;
+    // 3. ペナルティ分だけを耐圧レベルで割って軽減
+    const mitigatedPenalty = depthPenalty / pressure;
+    // 4. 合計の消費スピードを算出
+    const drain = (baseDrain + mitigatedPenalty).toFixed(2);
     const survival = Math.round(300 / parseFloat(drain));
 
     document.getElementById('drain-result').innerHTML = drain + ' <small>/秒</small>';
