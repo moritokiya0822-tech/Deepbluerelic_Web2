@@ -46,7 +46,7 @@
 
             <div class="nav-links">
                 <a href="#story">世界観</a>
-                <a href="#lights">4つの光</a>
+                <a href="#lights">素材と遺物</a>
                 <a href="#upgrade">潜水艦強化</a>
                 <a href="#depth">深度と酸素</a>
                 <a href="#strategy">初心者攻略</a>
@@ -137,10 +137,10 @@
             </div>
 
             <div class="quick-indicators">
-                <div class="indicator"><span class="dot-red"></span><span>赤：強化パーツ</span></div>
-                <div class="indicator"><span class="dot-yellow"></span><span>黄：遺物</span></div>
-                <div class="indicator"><span class="dot-white"></span><span>白：EXP/酸素UP</span></div>
-                <div class="indicator"><span class="dot-purple"></span><span>紫：セーブ拠点</span></div>
+   　　　　　　  <div class="indicator"><img src="12_宝箱(強化パーツ).png" class="indicator-img"><span>宝箱：強化パーツ</span></div>
+                <div class="indicator"><img src="13_遺物.png" class="indicator-img"><span>キラキラ：遺物</span></div>
+       　　　　　<div class="indicator"><img src="11_歯車(経験値 大).png" class="indicator-img"><span>歯車等：EXP/酸素UP</span></div>
+                <div class="indicator"><img src="14_歯車(金)_セーブ拠点.png" class="indicator-img"><span>金の歯車：セーブ拠点</span></div>
             </div>
         </div>
     </header>
@@ -196,27 +196,27 @@
         </div>
     </section>
 
-    <!-- 4つの光セクション -->
+    <!-- 4つのアイテムセクション -->
     <section id="lights" class="section">
         <div class="section-header">
             <div class="section-badge">
                 <i data-lucide="sparkles"></i>
                 <span>FOUR OCEANIC LIGHTS</span>
             </div>
-            <h2 class="section-title">深海に浮かぶ『4つの光』の意味と役割</h2>
-            <p class="section-text">海中を漂う神秘的な4色の光球。色ごとに全く異なる重要な効果を持ちます。</p>
+            <h2 class="section-title">深海に沈む『素材と遺物』の意味と役割</h2>
+            <p class="section-text">海中に散らばる宝箱や機構パーツ。素材ごとに探索を助ける重要な効果を持ちます</p>
         </div>
 
         <div class="grid-4col">
-            <!-- Red -->
+            <!-- 1. 赤い光 → 宝箱 -->
             <div class="light-card border-red">
                 <div class="light-card-top">
                     <div class="light-icon-circle icon-red-glow">
-                        <i data-lucide="wrench"></i>
+                        <img src="12_宝箱(強化パーツ).png" alt="宝箱" class="light-img">
                     </div>
                     <span class="priority-badge red">初心者優先度 S</span>
                 </div>
-                <h3 class="light-title">赤い光球（強化パーツ）</h3>
+                <h3 class="light-title">宝箱（強化パーツ）</h3>
                 <p class="light-desc">
                     潜水艦の6大ステータス（装甲・推力・耐圧・EMP・レーダー等）を最大Lv.10まで強化するための最重要素材。
                 </p>
@@ -224,15 +224,16 @@
                     💡 序盤は「耐圧効率」と「推進推力」に集中投資して生存時間を伸ばしましょう。
                 </div>
             </div>
-            <!-- Yellow -->
+
+            <!-- 2. 黄色い光 → 遺物 -->
             <div class="light-card border-amber">
                 <div class="light-card-top">
                     <div class="light-icon-circle icon-amber-glow">
-                        <i data-lucide="package"></i>
+                        <img src="13_遺物.png" alt="遺物" class="light-img">
                     </div>
                     <span class="priority-badge amber">初心者優先度 A</span>
                 </div>
-                <h3 class="light-title">黄色い光球（生活遺物）</h3>
+                <h3 class="light-title">キラキラマーク（生活遺物）</h3>
                 <p class="light-desc">
                     旧文明の日常品を入手。シリーズの遺物を揃えると「強化パーツ出現率5%アップ」などの永続セット効果が恒久発動！
                 </p>
@@ -240,31 +241,33 @@
                     💡 一度入手した遺物は永続的に図鑑へ登録されます。
                 </div>
             </div>
-            <!-- White -->
+
+            <!-- 3. 白い光 → 歯車・ボルト(ナット)・ネジ -->
             <div class="light-card border-white">
                 <div class="light-card-top">
                     <div class="light-icon-circle icon-white-glow">
-                        <i data-lucide="sparkles"></i>
+                        <img src="11_歯車(経験値 大).png" alt="歯車" class="light-img">
                     </div>
                     <span class="priority-badge white">初心者優先度 S</span>
                 </div>
-                <h3 class="light-title">白い光球（酸素拡張）</h3>
+                <h3 class="light-title">歯車・ナット・ネジ（酸素拡張）</h3>
                 <p class="light-desc">
                     経験値を獲得し、プレイヤーLvを上昇。最大呼吸バー（基本酸素容量）が恒久的に拡張されます。
                 </p>
                 <div class="light-footer white">
-                    💡 大中小3つのサイズが存在。浅海でたくさん集めて酸素の土台を作りましょう。
+                    💡 歯車(大)・ナット(中)・ネジ(小)の3サイズが存在。浅海でたくさん集めて酸素の土台を作りましょう。
                 </div>
             </div>
-            <!-- Purple -->
+
+            <!-- 4. 紫の光 → 金色の歯車 -->
             <div class="light-card border-purple">
                 <div class="light-card-top">
                     <div class="light-icon-circle icon-purple-glow">
-                        <i data-lucide="anchor"></i>
+                        <img src="14_歯車(金)_セーブ拠点.png" alt="金色の歯車" class="light-img">
                     </div>
                     <span class="priority-badge purple">初心者優先度 S+</span>
                 </div>
-                <h3 class="light-title">紫の光球（深海セーブ拠点）</h3>
+                <h3 class="light-title">金色の歯車（深海セーブ拠点）</h3>
                 <p class="light-desc">
                     深度200m/700m/1200mの拠点を解放。次回からその深度を選択してダイブ開始可能。
                 </p>
@@ -283,7 +286,7 @@
                 <span>STATUS SIMULATOR</span>
             </div>
             <h2 class="section-title">潜水艦ステータス強化シミュレーター</h2>
-            <p class="section-text">赤い光で強化できる6大ステータスをシミュレーション。レベルを増減させてみましょう。</p>
+            <p class="section-text">宝箱から得られるパーツで強化できる6大ステータスをシミュレーション。レベルを増減させてみましょう。</p>
         </div>
 
         <div class="simulator-controls">
@@ -360,7 +363,7 @@
                     <h3>0m 〜 200m：陽光層（浅海）</h3>
                     <span class="zone-tag">酸素消費 1.0x</span>
                 </div>
-                <p>太陽光が届く青い穏やかな海。白い光（EXP）や赤い光（パーツ）を回収して基礎体力をビルドするエリア。</p>
+                <p>太陽光が届く青い穏やかな海。歯車・ネジ（EXP）や宝箱（パーツ）を回収して基礎体力をビルドするエリア。</p>
                 <div class="zone-footer">推奨: 初期状態 (Lv.1〜2) / チェックポイント: 0m</div>
             </div>
             <div class="depth-zone zone-blue">
@@ -403,10 +406,10 @@
         <div class="grid-3col">
             <div class="step-card sky">
                 <span class="step-badge">STEP 1 (0〜200m)</span>
-                <h3>白・赤の光で基礎ビルド</h3>
+                <h3>ネジやナット,宝箱で基礎ビルド</h3>
                 <ul>
-                    <li>• 白い光を集めて呼吸バーを拡張</li>
-                    <li>• 赤い光で「耐圧・推力」をLv.3へ</li>
+                    <li>• ネジやナットを集めて呼吸バーを拡張</li>
+                    <li>• 宝箱で「耐圧・推力」をLv.3へ</li>
                     <li>• 200mの紫の光で第1セーブ確保</li>
                 </ul>
             </div>
@@ -472,7 +475,7 @@
                 <div>深度: <strong id="hud-depth">0m</strong></div>
                 <div>酸素: <strong id="hud-o2">100%</strong></div>
                 <div>装甲: <strong id="hud-hp">100</strong></div>
-                <div>赤パーツ: <strong id="hud-red">0</strong></div>
+                <div>宝箱: <strong id="hud-red">0</strong></div>
                 <div>遺物: <strong id="hud-relic">0個</strong></div>
             </div>
 
