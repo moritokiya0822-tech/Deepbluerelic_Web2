@@ -966,3 +966,17 @@ button:active {
 
 .footer p { font-size: 12px; color: #94a3b8; margin-bottom: 16px; }
 .copyright { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #475569; }
+
+/* 追加：アイコン画像のスタイル調整 */
+.light-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.indicator-img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    vertical-align: middle;
+}
