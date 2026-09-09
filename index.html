@@ -57,10 +57,6 @@
                 <button id="sound-btn" onclick="toggleMute()" title="サウンドON/OFF" class="icon-btn">
                     <i data-lucide="volume-2" id="sound-icon"></i>
                 </button>
-                <button onclick="openModal()" class="btn-primary">
-                    <i data-lucide="play" class="fill-icon"></i>
-                    <span>潜水体験 PLAY</span>
-                </button>
             </div>
         </div>
     </nav>
@@ -456,44 +452,6 @@
             <div class="copyright">© 2026 Deep Blue Relic. Project Separation Study.</div>
         </div>
     </footer>
-
-    <!-- モーダル（ミニゲーム） -->
-    <div id="sim-modal" class="modal-overlay hidden">
-        <div class="modal-window">
-            <div class="modal-header">
-                <div class="modal-title-group">
-                    <i data-lucide="compass"></i>
-                    <div>
-                        <h3>深海潜水インタラクティブ体験</h3>
-                        <p>DEEP SEA DIVE SIMULATION</p>
-                    </div>
-                </div>
-                <button onclick="closeModal()" class="modal-close"><i data-lucide="x"></i></button>
-            </div>
-
-            <div class="game-hud">
-                <div>深度: <strong id="hud-depth">0m</strong></div>
-                <div>酸素: <strong id="hud-o2">100%</strong></div>
-                <div>装甲: <strong id="hud-hp">100</strong></div>
-                <div>宝箱: <strong id="hud-red">0</strong></div>
-                <div>遺物: <strong id="hud-relic">0個</strong></div>
-            </div>
-
-            <div class="game-viewport">
-                <canvas id="game-canvas" width="640" height="380"></canvas>
-                <div id="game-overlay" class="game-overlay">
-                    <h4 id="overlay-title">深海潜水を開始</h4>
-                    <p id="overlay-desc">WASDまたは矢印キーで操縦。光球を回収しながら深海を目指しましょう！</p>
-                    <button onclick="startGame()" class="btn-start">潜水スタート</button>
-                </div>
-            </div>
-
-            <div class="game-controls-help">
-                <div>操作: 矢印キー または W / A / S / D</div>
-                <button onclick="triggerGameEMP()" class="btn-emp-trigger">⚡ EMP放電 (Space)</button>
-            </div>
-        </div>
-    </div>
 
     <!-- 外部JavaScriptの読み込み -->
     <script src="script.js"></script>
